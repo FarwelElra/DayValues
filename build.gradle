@@ -59,7 +59,7 @@ shadowJar {
     configurations = [project.configurations.runtimeClasspath]
     mergeServiceFiles()
 
-    archiveBaseName = 'MySpring'
+    archiveBaseName = 'DayValues'
     archiveVersion = '1.0'
     archiveClassifier = ''
 
