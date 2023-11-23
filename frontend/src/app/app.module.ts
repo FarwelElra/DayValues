@@ -18,6 +18,7 @@ import {MatIconModule} from "@angular/material/icon";
 import { DayValuesComponent } from './components/day-values/day-values.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatTreeModule} from "@angular/material/tree";
+import { SideNavEntryComponent } from './components/side-nav-entry/side-nav-entry.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import {MatTreeModule} from "@angular/material/tree";
     HomeComponent,
     ToolBarComponent,
     DayValuesComponent,
+    SideNavEntryComponent,
   ],
   imports: [
     HttpClientModule,

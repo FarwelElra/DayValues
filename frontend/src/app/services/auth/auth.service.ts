@@ -16,9 +16,10 @@ const headers = new HttpHeaders({
   providedIn: 'root'
 })
 export class AuthService {
-  private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private loggedIn: BehaviorSubject<boolean>;
 
   constructor(private http: HttpClient, private session: SessionService, private router: Router) {
+    this.loggedIn = new BehaviorSubject<boolean>(this.session.token != null);
   }
 
   get isUserLoggedIn() {

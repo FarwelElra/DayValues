@@ -1,19 +1,15 @@
 <div class="container">
-  <div class="header">
   <app-tool-bar></app-tool-bar>
-  </div>
   <mat-sidenav-container class="content">
-    <mat-sidenav mode="side" opened class="sideNavContent">
-      <ul>
-        <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
-        <li><a routerLink="/dayValues" routerLinkActive="active">Day Values</a></li>
-      </ul>
-    </mat-sidenav>
-    <mat-sidenav-content>
-      <div class="content">
-        <router-outlet></router-outlet>
-      </div>
-    </mat-sidenav-content>
+      <mat-sidenav mode="side" opened class="sideNavContent">
+        <app-side-nav-entry *ngFor="let entity of sideNavEntities" [route]="entity.route" [title]="entity.title"
+                            [icon]="entity.icon"></app-side-nav-entry>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <div class="content">
+          <router-outlet></router-outlet>
+        </div>
+      </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
 

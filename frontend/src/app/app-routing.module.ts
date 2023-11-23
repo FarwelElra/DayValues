@@ -7,6 +7,7 @@ import {AuthGuard} from "./services/auth/auth.guard";
 import {DayValuesComponent} from "./components/day-values/day-values.component";
 
 const routes: Routes = [
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'error', component: ErrorComponent},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'dayValues', component: DayValuesComponent, canActivate: [AuthGuard]},

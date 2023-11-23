@@ -1,4 +1,12 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {Router} from "@angular/router";
+import {SideNavEntry} from "./dto/sideNav/sideNav";
+
+const sideNavEntries: SideNavEntry[] = [
+  {title: "Home", route: '/home', icon:'home'},
+  {title: "Day values", route: '/dayValues', icon: ''}
+]
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +14,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  title = 'frontend';
+
+  sideNavEntities = sideNavEntries;
+  constructor(router: Router) {
+    router.navigate(["/home"]);
+  }
 }
