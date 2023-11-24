@@ -3,20 +3,22 @@ import {DayValues} from "../../dto/dayValues/dayValues";
 import {SelectionModel} from "@angular/cdk/collections";
 import {MatTableDataSource} from "@angular/material/table";
 import {ApiService} from "../../services/api.service";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-day-values',
   templateUrl: './day-values.component.html',
-  styleUrls: ['./day-values.component.less']
+  styleUrls: ['./day-values.component.less'],
+  providers: [DatePipe]
 })
-export class DayValuesComponent implements OnInit{
+export class DayValuesComponent implements OnInit {
   displayedColumns: string[] = ['select', 'date', 'sys', 'dia', 'pulse', 'weight'];
 
   dataSource = new MatTableDataSource<DayValues>();
   selection = new SelectionModel<DayValues>(true, []);
 
 
-  constructor(private api: ApiService) {
+  constructor(private api: ApiService, private datePipe: DatePipe) {
   }
 
   ngOnInit(): void {
@@ -26,9 +28,9 @@ export class DayValuesComponent implements OnInit{
   loadData(): void {
     this.api.loadAllDayValues().subscribe(
       {
-        next: (data) => this.dataSource = data,
-        error: err =>  console.error('Fehler beim Laden der Daten:', err)
-        }
+        next: (data) => this.dataSource.data = data,
+        error: err => console.error('Fehler beim Laden der Daten:', err)
+      }
     );
   }
 
@@ -39,7 +41,6 @@ export class DayValuesComponent implements OnInit{
   }
 
 
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
   toggleAllRows() {
     if (this.isAllSelected()) {
       this.selection.clear();
@@ -48,7 +49,6 @@ export class DayValuesComponent implements OnInit{
     this.selection.select(...this.dataSource.data);
   }
 
-  /** The label for the checkbox on the passed row */
   checkboxLabel(row?: DayValues): string {
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
@@ -56,5 +56,8 @@ export class DayValuesComponent implements OnInit{
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
   }
 
+  formatDate(date: Date): string | null {
+    return this.datePipe.transform(date, 'dd.MM.yyyy');
+  }
 
 }
