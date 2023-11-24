@@ -1,1 +1,58 @@
-<p>day-values works!</p>
+  <button mat-icon-button (click)="loadData()">
+    <mat-icon>refresh</mat-icon>
+  </button>
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? toggleAllRows() : null"
+                      [checked]="selection.hasValue() && isAllSelected()"
+                      [indeterminate]="selection.hasValue() && !isAllSelected()"
+                      [aria-label]="checkboxLabel()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()"
+                      (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)"
+                      [aria-label]="checkboxLabel(row)">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
+    <!-- Datum Spalte -->
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef>Date</th>
+      <td mat-cell *matCellDef="let row">{{ row.date }}</td>
+    </ng-container>
+
+    <!-- Sys Spalte -->
+    <ng-container matColumnDef="sys">
+      <th mat-header-cell *matHeaderCellDef>Sys</th>
+      <td mat-cell *matCellDef="let row">{{ row.sys }}</td>
+    </ng-container>
+
+    <!-- Dia Spalte -->
+    <ng-container matColumnDef="dia">
+      <th mat-header-cell *matHeaderCellDef>Dia</th>
+      <td mat-cell *matCellDef="let row">{{ row.dia }}</td>
+    </ng-container>
+
+    <!-- Pulse Spalte -->
+    <ng-container matColumnDef="pulse">
+      <th mat-header-cell *matHeaderCellDef>Pulse</th>
+      <td mat-cell *matCellDef="let row">{{ row.pulse }}</td>
+    </ng-container>
+
+    <!-- Weight Spalte -->
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef>Weight</th>
+      <td mat-cell *matCellDef="let row">{{ row.weight }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+        (click)="selection.toggle(row)">
+    </tr>
+  </mat-table>
+
