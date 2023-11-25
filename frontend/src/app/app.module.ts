@@ -10,15 +10,23 @@ import {HomeComponent} from './components/home/home.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
-import {ReactiveFormsModule} from "@angular/forms";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
-import { ToolBarComponent } from './components/tool-bar/tool-bar.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {ToolBarComponent} from './components/tool-bar/tool-bar.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
-import { DayValuesComponent } from './components/day-values/day-values.component';
+import {DayValuesComponent} from './components/day-values/day-values.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatTreeModule} from "@angular/material/tree";
-import { SideNavEntryComponent } from './components/side-nav-entry/side-nav-entry.component';
+import {SideNavEntryComponent} from './components/side-nav-entry/side-nav-entry.component';
+import {MatTableModule} from "@angular/material/table";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatSortModule} from "@angular/material/sort";
+import {AuthInterceptor} from "./services/auth/auth.interceptor";
+import { DayValuesInputDialogComponent } from './components/day-values-input-dialog/day-values-input-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -29,6 +37,7 @@ import { SideNavEntryComponent } from './components/side-nav-entry/side-nav-entr
     ToolBarComponent,
     DayValuesComponent,
     SideNavEntryComponent,
+    DayValuesInputDialogComponent,
   ],
   imports: [
     HttpClientModule,
@@ -42,9 +51,20 @@ import { SideNavEntryComponent } from './components/side-nav-entry/side-nav-entr
     MatToolbarModule,
     MatIconModule,
     MatSidenavModule,
-    MatTreeModule
+    MatTreeModule,
+    MatTableModule,
+    MatCheckboxModule,
+    MatSortModule,
+    MatDialogModule,
+    FormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
-  providers: [HttpClient],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule {
