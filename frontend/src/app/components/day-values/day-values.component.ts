@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {SelectionModel} from "@angular/cdk/collections";
 import {MatTableDataSource} from "@angular/material/table";
 import {ApiService} from "../../services/api.service";
@@ -6,6 +6,7 @@ import {DatePipe} from "@angular/common";
 import {DayValuesInputDialogComponent} from "../day-values-input-dialog/day-values-input-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {DayValueId, DayValues, DayValuesWithoutId} from "../../dto/dayValues/dayValues";
+import {MatSort, Sort} from "@angular/material/sort";
 
 
 @Component({
@@ -19,17 +20,28 @@ export class DayValuesComponent implements OnInit {
 
   dataSource = new MatTableDataSource<DayValues>();
   selection = new SelectionModel<DayValues>(true, []);
-
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private api: ApiService,
     private datePipe: DatePipe,
     private dialog: MatDialog
   ) {
+    this.dataSource.filterPredicate = (data: DayValues, filter: string) => {
+      const searchTerms = filter.split(' ');
+      return searchTerms.every(term =>
+        data.date.toString().toLowerCase().includes(term) ||
+        data.sys.toString().toLowerCase().includes(term) ||
+        data.dia.toString().toLowerCase().includes(term) ||
+        data.pulse.toString().toLowerCase().includes(term) ||
+        data.weight.toString().toLowerCase().includes(term)
+      );
+    }
   }
 
   ngOnInit(): void {
     this.loadData();
+    this.dataSource.sort = this.sort
   }
 
   loadData(): void {
@@ -101,5 +113,37 @@ export class DayValuesComponent implements OnInit {
   private handelDeletion() {
     this.selection.clear();
     this.loadData();
+  }
+
+  sortData(sort: Sort) {
+    const data = this.dataSource.data.slice();
+    if (!sort.active || sort.direction === '') {
+      this.dataSource.data = data;
+      return;
+    }
+
+    this.dataSource.data = data.sort((a: any, b: any) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'sys':
+          return this.compare(a.sys, b.sys, isAsc);
+        case 'dia':
+          return this.compare(a.dia, b.dia, isAsc);
+        case 'pulse':
+          return this.compare(a.pulse, b.pulse, isAsc);
+        case 'weight':
+          return this.compare(a.weight, b.weight, isAsc);
+        case 'date':
+          return this.compare(a.date, b.date, isAsc);
+        default:
+          return 0;
+      }
+    });
+  }
+
+  compare(a: number | string, b: number | string, isAsc: boolean) {
+    console.log(a);
+    console.log(b);
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 }

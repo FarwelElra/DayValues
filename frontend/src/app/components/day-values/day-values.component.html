@@ -11,7 +11,7 @@
     </button>
   </mat-toolbar>
 
-  <mat-table [dataSource]="dataSource">
+  <mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
     <!-- Checkbox Column -->
     <ng-container matColumnDef="select">
       <th mat-header-cell *matHeaderCellDef>
@@ -33,27 +33,27 @@
     </ng-container>
 
     <ng-container matColumnDef="date">
-      <th mat-header-cell *matHeaderCellDef>Date</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
       <td mat-cell *matCellDef="let row">{{ formatDate(row.date) }}</td>
     </ng-container>
 
     <ng-container matColumnDef="sys">
-      <th mat-header-cell *matHeaderCellDef>Sys</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Sys</th>
       <td mat-cell *matCellDef="let row">{{ row.sys }}</td>
     </ng-container>
 
     <ng-container matColumnDef="dia">
-      <th mat-header-cell *matHeaderCellDef>Dia</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Dia</th>
       <td mat-cell *matCellDef="let row">{{ row.dia }}</td>
     </ng-container>
 
     <ng-container matColumnDef="pulse">
-      <th mat-header-cell *matHeaderCellDef>Pulse</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Pulse</th>
       <td mat-cell *matCellDef="let row">{{ row.pulse }}</td>
     </ng-container>
 
     <ng-container matColumnDef="weight">
-      <th mat-header-cell *matHeaderCellDef>Weight</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Weight</th>
       <td mat-cell *matCellDef="let row">{{ row.weight }}</td>
     </ng-container>
 
