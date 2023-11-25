@@ -1,0 +1,46 @@
+<h2 mat-dialog-title>Input Dialog</h2>
+<mat-dialog-content>
+  <form [formGroup]="form" class="dialog-form">
+    <div class="form-field">
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date" name="date" formControlName="date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="!isFieldValid('date')">{{ getErrorMessage('date') }}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-field">
+      <mat-form-field>
+        <input matInput type="number" name="sys" formControlName="sys" placeholder="Sys">
+        <mat-error *ngIf="!isFieldValid('sys')">{{ getErrorMessage('sys') }}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-field">
+      <mat-form-field>
+        <input matInput type="number" name="dia" formControlName="dia" placeholder="Dia">
+        <mat-error *ngIf="!isFieldValid('dia')">{{ getErrorMessage('dia') }}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-field">
+      <mat-form-field>
+        <input matInput type="number" name='pulse' formControlName="pulse" placeholder="Pulse">
+        <mat-error *ngIf="!isFieldValid('pulse')">{{ getErrorMessage('pulse') }}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-field">
+      <mat-form-field>
+        <input matInput type="number" name='weight' formControlName="weight" placeholder="Weight">
+        <mat-error *ngIf="!isFieldValid('weight')">{{ getErrorMessage('weight') }}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="button-group">
+      <button mat-raised-button color="primary" (click)="submitForm(form)" [disabled]="!form.valid">Submit</button>
+      <button mat-raised-button color="warn" (click)="cancel()">Cancel</button>
+    </div>
+  </form>
+</mat-dialog-content>

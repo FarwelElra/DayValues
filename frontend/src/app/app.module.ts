@@ -10,7 +10,7 @@ import {HomeComponent} from './components/home/home.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {ToolBarComponent} from './components/tool-bar/tool-bar.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
@@ -23,6 +23,10 @@ import {MatTableModule} from "@angular/material/table";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatSortModule} from "@angular/material/sort";
 import {AuthInterceptor} from "./services/auth/auth.interceptor";
+import { DayValuesInputDialogComponent } from './components/day-values-input-dialog/day-values-input-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -33,6 +37,7 @@ import {AuthInterceptor} from "./services/auth/auth.interceptor";
     ToolBarComponent,
     DayValuesComponent,
     SideNavEntryComponent,
+    DayValuesInputDialogComponent,
   ],
   imports: [
     HttpClientModule,
@@ -49,7 +54,11 @@ import {AuthInterceptor} from "./services/auth/auth.interceptor";
     MatTreeModule,
     MatTableModule,
     MatCheckboxModule,
-    MatSortModule
+    MatSortModule,
+    MatDialogModule,
+    FormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
