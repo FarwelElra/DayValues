@@ -1,16 +1,47 @@
+.mat-card {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
 
-table {
-  width: 100%;
+
+.mat-table {
+  flex: 1;
+  max-height: 1100px;
+  overflow-y: auto; /* Scrollbalken anzeigen, wenn die Tabelle zu groß wird */
+}
+
+.mat-row,
+.mat-header-row {
+  margin: 0;
+  padding: 0;
 }
 
 .mat-header-cell {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  height: 100%;
+  line-height: 50px;
+  position: sticky;
+  top: 0;
+  padding: 0;
+  margin: 0;
 }
 
+.mat-cell {
+  line-height: 50px;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+.mat-column-check{
+  flex: 1;
+  min-width: 50px; /* Passen Sie die minimale Breite nach Bedarf an */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .mat-column-date,
 .mat-column-sys,
 .mat-column-dia,
@@ -18,10 +49,7 @@ table {
 .mat-column-weight {
   flex: 1;
   overflow: hidden;
-  width: 20%; /* Adjust the percentage as needed */
-}
-
-.mat-cell {
-  flex: 1;
-  overflow: hidden;
+  width: 20%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
