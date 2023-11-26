@@ -8,7 +8,14 @@ import {AuthService} from "../../services/auth/auth.service";
 })
 export class ToolBarComponent {
 
+  show = false
+
   constructor(private auth: AuthService) {
+    auth.isUserLoggedIn.subscribe(
+      {
+        next: value => this.show = value
+      }
+    )
   }
 
   logOut() {
