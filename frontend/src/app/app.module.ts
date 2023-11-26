@@ -27,6 +27,7 @@ import { DayValuesInputDialogComponent } from './components/day-values-input-dia
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import { RangeDialogComponent } from './components/range-dialog/range-dialog.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import {MatNativeDateModule} from "@angular/material/core";
     DayValuesComponent,
     SideNavEntryComponent,
     DayValuesInputDialogComponent,
+    RangeDialogComponent,
   ],
   imports: [
     HttpClientModule,
