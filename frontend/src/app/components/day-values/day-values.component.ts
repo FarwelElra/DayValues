@@ -170,7 +170,6 @@ export class DayValuesComponent implements OnInit {
     let pulseFilter = this.columnFilters.get('pulse')
     let weightFilter = this.columnFilters.get('weight');
 
-
     return (data: DayValues) => {
       let result = true;
       if (dateFilter) {
