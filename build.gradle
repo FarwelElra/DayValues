@@ -7,7 +7,7 @@ plugins {
 }
 
 group = 'de.nilzbu'
-version = '0.0.1-SNAPSHOT'
+version = 'DayValues'
 
 java {
     sourceCompatibility = '17'
