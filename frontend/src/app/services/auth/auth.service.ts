@@ -5,6 +5,7 @@ import {AuthRequest} from "../../dto/auth/authRequest";
 import {AuthResponseDto} from "../../dto/auth/authResponse";
 import {BehaviorSubject} from "rxjs";
 import {Router} from "@angular/router";
+import {DataService} from "../data.service";
 
 const auth = '/authenticate';
 const authApi = '/api/auth'
@@ -18,7 +19,12 @@ const headers = new HttpHeaders({
 export class AuthService {
   private loggedIn: BehaviorSubject<boolean>;
 
-  constructor(private http: HttpClient, private session: SessionService, private router: Router) {
+  constructor(
+    private http: HttpClient,
+    private session: SessionService,
+    private router: Router,
+    private data: DataService
+  ) {
     this.loggedIn = new BehaviorSubject<boolean>(this.session.token != null);
   }
 
@@ -47,7 +53,8 @@ export class AuthService {
   }
 
   private handleComplete = () => {
-    console.log("completed")
+    this.data.refreshData();
+    this.data.refreshFilter();
   }
 
   logout() {

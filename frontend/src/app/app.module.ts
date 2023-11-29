@@ -29,6 +29,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import { RangeDialogComponent } from './components/range-dialog/range-dialog.component';
 import {DatePipe} from "@angular/common";
+import { FilterToolBarComponent } from './components/filter-tool-bar/filter-tool-bar.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import {DatePipe} from "@angular/common";
     SideNavEntryComponent,
     DayValuesInputDialogComponent,
     RangeDialogComponent,
+    FilterToolBarComponent,
   ],
   imports: [
     HttpClientModule,

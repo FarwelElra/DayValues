@@ -1,0 +1,32 @@
+<mat-toolbar>
+  <button mat-icon-button (click)="openRangeDialog('date')">
+    <mat-icon>filter_list</mat-icon>
+  </button>
+  <button mat-button (click)="delFilter('date')">
+    Date: {{getRepresentation('date')}}
+  </button>
+  <button mat-icon-button (click)="openRangeDialog('sys')">
+    <mat-icon>filter_list</mat-icon>
+  </button>
+  <button mat-button (click)="delFilter('sys')">
+    Sys: {{getRepresentation('sys')}}
+  </button>
+  <button mat-icon-button (click)="openRangeDialog('dia')">
+    <mat-icon>filter_list</mat-icon>
+  </button>
+  <button mat-button (click)="delFilter('dia')">
+    Dia: {{getRepresentation('dia')}}
+  </button>
+  <button mat-icon-button (click)="openRangeDialog('pulse')">
+    <mat-icon>filter_list</mat-icon>
+  </button>
+  <button mat-button (click)="delFilter('pulse')">
+    Pulse: {{getRepresentation('pulse')}}
+  </button>
+  <button mat-icon-button (click)="openRangeDialog('weight')">
+    <mat-icon>filter_list</mat-icon>
+  </button>
+  <button mat-button (click)="delFilter('weight')">
+    Weight: {{getRepresentation('weight')}}
+  </button>
+</mat-toolbar>
